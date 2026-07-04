@@ -6,12 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @GetMapping("")
-    public String home() {
-        return "Nirbhaya Home Page";
-    }
-
-    @GetMapping("/test")
+@GetMapping("/test")
     public String test() {
         return "Nirbhaya Application is running successfully!";
     }
