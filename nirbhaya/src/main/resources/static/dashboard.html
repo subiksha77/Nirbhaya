@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nirbhaya - Women Safety System & Incident Management Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <div id="app-screen" style="display: flex; width: 100%;">
+        
+        <aside>
+            <div>
+                <div class="logo-area">
+                    <div class="logo-icon">
+                        <img src="./images/banner3.jpeg" alt="Logo">
+                    </div>
+                    <div class="logo-text">NIRBHAYA</div>
+                    <div class="logo-subtext">Women Safety System</div>
+                </div>
+
+                <ul class="nav-links">
+
+    <!-- Dashboard -->
+    <li class="nav-item active" data-target="dashboard-view">
+        <a>
+            <i class="fa-solid fa-chart-pie"></i>
+            Dashboard
+        </a>
+    </li>
+
+    <!-- Incident Database -->
+    <li class="nav-item" data-target="database-view">
+        <a>
+            <i class="fa-solid fa-database"></i>
+            Incident Database
+        </a>
+    </li>
+
+    <!-- SOS -->
+    <li class="nav-item" onclick="triggerSOS()">
+        <a>
+            <i class="fa-solid fa-triangle-exclamation" style="color:var(--primary-color);"></i>
+            SOS Emergency
+        </a>
+    </li>
+
+    <!-- Live Location -->
+    <li class="nav-item" data-target="live-location-view">
+        <a>
+            <i class="fa-solid fa-location-dot"></i>
+            Live Location
+        </a>
+    </li>
+
+    <!-- Safe Zones -->
+    <li class="nav-item" data-target="safe-zones-view">
+        <a>
+            <i class="fa-solid fa-shield-heart"></i>
+            Safe Zones
+        </a>
+    </li>
+
+    <!-- Contacts -->
+    <li class="nav-item" data-target="contacts-view">
+        <a>
+            <i class="fa-solid fa-address-book"></i>
+            Contacts
+        </a>
+    </li>
+
+    <!-- Alerts -->
+    <li class="nav-item" data-target="alerts-view">
+        <a>
+            <i class="fa-solid fa-bell"></i>
+            Alerts Log Panel
+        </a>
+    </li>
+
+    <!-- Reports -->
+    <li class="nav-item" data-target="reports-view">
+        <a>
+            <i class="fa-solid fa-file-invoice"></i>
+            Reports
+        </a>
+    </li>
+
+    <!-- Safety Tips -->
+    <li class="nav-item" data-target="tips-view">
+        <a>
+            <i class="fa-solid fa-lightbulb"></i>
+            Safety Tips
+        </a>
+    </li>
+
+    <!-- Settings -->
+    <li class="nav-item" data-target="settings-view">
+        <a>
+            <i class="fa-solid fa-gear"></i>
+            Settings
+        </a>
+    </li>
+    <li class="nav-item" data-target="about-view">
+    <a>
+        <i class="fa-solid fa-circle-info"></i>
+        About
+    </a>
+</li>
+
+</ul>
+            </div>
+
+            <div class="sidebar-footer-card">
+                <div class="footer-card-icon"><img src="./images/banner2.jpeg" alt="Footer Banner"></div>
+                <div class="footer-card-text">You are stronger than you think.</div>
+                <div class="divider-heart"><i class="fa-solid fa-heart"></i></div>
+            </div>
+            </aside>
+
+        <main>
+            <header>
+    <div class="welcome-msg">
+        <h1>Welcome back, <span id="user-display-name">Verified User</span>! 👋</h1>
+        <p>Stay alert, stay aware, and stay safe.</p>
+    </div>
+
+    <div class="header-actions">
+
+        <!-- Notification -->
+        <div class="icon-badge" id="notificationBtn">
+    <i class="fa-solid fa-bell"></i>
+    <span class="badge" id="notificationCount">0</span>
+
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+            Notifications
+        </div>
+
+        <div id="notificationList">
+            <p class="empty-text">No notifications</p>
+        </div>
+    </div>
+</div>
+        <!-- Messages -->
+        <div class="icon-badge" id="messageBtn">
+            <i class="fa-solid fa-comment-dots"></i>
+            <span class="badge blue">2</span>
+
+            <div class="dropdown-panel" id="messagePanel">
+                <h4>Messages</h4>
+                <div class="dropdown-item">
+                    👩 Mother: Are you safe?
+                </div>
+                <div class="dropdown-item">
+                    👮 Police: Help is on the way.
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile -->
+        <div class="profile-menu" id="profileBtn">
+            <div class="profile-avatar-fallback" id="profile-initial">V</div>
+            <span id="user-display-meta">Verified User</span>
+            <i class="fa-solid fa-chevron-down"></i>
+
+            <div class="dropdown-panel" id="profilePanel">
+                <div class="dropdown-item">👤 My Profile</div>
+                <div class="dropdown-item">⚙ Settings</div>
+                <div class="dropdown-item">❓ Help</div>
+                <div class="dropdown-item" onclick="logout()">🚪 Logout</div>
+            </div>
+        </div>
+
+    </div>
+</header>
+   <section id="dashboard-view" class="view-section active-view">
+                <div class="hero-banner-clean">
+                    <img src="./images/banner1 img.jpeg" alt="Nirbhaya Safety Banner">
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="left-panel">
+                        <div class="card-sos-container">
+                            <div class="sos-info-side">
+                                <div class="sos-circle-btn" id="sosMainBtn" onclick="triggerSOS()">SOS</div>
+                                <div class="sos-text">
+                                    <h3>Need Help? Press SOS</h3>
+                                    <p>Alerts will be sent to contacts & video archiving begins.</p>
+                                    <div class="video-evidence-banner" id="videoBanner">
+                                        <i class="fa-solid fa-video"></i> [AUTO EVIDENCE VIDEO RECORDING RUNNING]
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sos-trigger-side" onclick="triggerSOS()">
+                                <i class="fa-solid fa-bell-concierge"></i>
+                                <p>Tap to<br>Send Alert</p>
+                            </div>
+                        </div>
+
+                        <div class="card" id="quick-action-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Quick Actions</h3>
+                            </div>
+                            <div class="actions-grid">
+                                <div class="action-item" onclick="showToast('Retrieving dynamic trace data...')">
+                                    <div class="action-icon-box act-purple"><i class="fa-solid fa-location-crosshairs"></i></div>
+                                    <p>Live Location</p>
+                                </div>
+                                <div class="action-item" onclick="switchView('database-view')">
+                                    <div class="action-icon-box act-green"><i class="fa-solid fa-users"></i></div>
+                                    <p>Incident Logs</p>
+                                </div>
+                                <div class="action-item" onclick="showToast('Simulating dummy incoming safety ring protocol...')">
+                                    <div class="action-icon-box act-blue"><i class="fa-solid fa-phone-flip"></i></div>
+                                    <p>Fake Call</p>
+                                </div>
+                                <div class="action-item" onclick="showToast('Displaying safety optimization directory.')">
+                                    <div class="action-icon-box act-orange"><i class="fa-solid fa-lightbulb"></i></div>
+                                    <p>Safety Tips</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="camera-card">
+                        <h3>Live Video Recording Feed</h3>
+                        <video id="videoPreview" autoplay muted playsinline></video>
+                    </div>
+                </div>
+
+                <div class="sub-grid-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Emergency Contacts</h3>
+                            <a class="view-all" onclick="showToast('Primary directory sequence opened.')">View All</a>
+                        </div>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <div class="contact-info">
+                                    <div class="contact-avatar avatar-pink">D</div>
+                                    <div class="contact-details">
+                                        <h4 id="contactName1">Loading Name...</h4>
+                                        <p id="contactPhone1">--</p>
+                                    </div>
+                                </div>
+                                <a id="call1" class="call-btn"><i class="fa-solid fa-phone"></i></a>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-info">
+                                    <div class="contact-avatar avatar-purple">M</div>
+                                    <div class="contact-details">
+                                        <h4 id="contactName2">Loading Name...</h4>
+                                        <p id="contactPhone2">--</p>
+                                    </div>
+                                </div>
+                                <a id="call2" class="call-btn"><i class="fa-solid fa-phone"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title"><i class="fa-solid fa-location-dot"></i> Live GPS Tracking</h3>
+                            <div class="location-status">Active</div>
+                        </div>
+                        <iframe id="liveMap" width="100%" loading="lazy"></iframe>
+                        <div class="location-info">
+                            <div class="location-address" id="currentAddressText">Waiting for GPS coordinates secure stream lock...</div>
+                            <div class="gps-coordinates">
+                                <span id="latitudeText">Latitude: --</span><br>
+                                <span id="longitudeText">Longitude: --</span>
+                            </div>
+                        </div>
+                        <button class="share-location-btn" onclick="getLiveLocation()">
+                            <i class="fa-solid fa-location-crosshairs"></i> Refresh GPS Stream
+                        </button>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Recent System Flags</h3>
+                            <a class="view-all" onclick="switchView('database-view')">View Database</a>
+                        </div>
+                        <div class="alerts-list" id="recentAlertsQueue">
+                            <div class="alert-item">
+                                <div class="alert-icon-wrapper alert-red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                                <div class="alert-content">
+                                    <div class="alert-row-top">
+                                        <h5>Danger Perimeter Zone</h5>
+                                        <span class="alert-time">10:30 AM</span>
+                                    </div>
+                                    <p>High-risk location corridor mapped near your coordinates.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="database-view" class="view-section">
+                <div class="db-header-row">
+                    <div class="welcome-msg">
+                        <h2>Incident Management Database System</h2>
+                        <p>Central structural repository engine tracking active verification files and archival metrics data records.</p>
+                    </div>
+                </div>
+
+                <div class="db-summary-cards">
+                    <div class="summary-mini-card">
+                        <div>
+                            <h6>Total Incidents</h6>
+                            <div class="sc-count" id="count-total">0</div>
+                        </div>
+                        <div class="sc-icon"><i class="fa-solid fa-folder-open"></i></div>
+                    </div>
+                    <div class="summary-mini-card sc-pending">
+                        <div>
+                            <h6>Pending Logs</h6>
+                            <div class="sc-count" id="count-pending">0</div>
+                        </div>
+                        <div class="sc-icon"><i class="fa-solid fa-clock"></i></div>
+                    </div>
+                    <div class="summary-mini-card sc-investigating">
+                        <div>
+                            <h6>Investigating</h6>
+                            <div class="sc-count" id="count-investigating">0</div>
+                        </div>
+                        <div class="sc-icon"><i class="fa-solid fa-magnifying-glass-shield"></i></div>
+                    </div>
+                    <div class="summary-mini-card sc-resolved">
+                        <div>
+                            <h6>Resolved Entries</h6>
+                            <div class="sc-count" id="count-resolved">0</div>
+                        </div>
+                        <div class="sc-icon"><i class="fa-solid fa-square-check"></i></div>
+                    </div>
+                </div>
+
+                <div class="incident-form-box">
+                    <div class="card-header" style="margin-bottom: 15px; padding:0;">
+                        <h3 class="card-title"><i class="fa-solid fa-file-medical" style="color: var(--primary-color);"></i> Log New Incident Entry</h3>
+                    </div>
+                    <form id="incidentForm" onsubmit="handleFormSubmit(event)">
+                        <input type="hidden" id="editIncidentId" value="">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="victimName">Affected Person Name</label>
+                                <input type="text" id="victimName" placeholder="Enter name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="victimAge">Age</label>
+                                <input type="number" id="victimAge" placeholder="Age" min="1" max="120" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="caseStatus">Case Status Tracking</label>
+                                <select id="caseStatus" required>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Under Investigation" selected>Under Investigation</option>
+                                    <option value="Resolved">Resolved</option>
+                                    <option value="Closed">Closed</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="incidentLocation">Exact Incident Location (Street, Landmark, City, GPS Matrix Data)</label>
+                                <input type="text" id="incidentLocation" placeholder="e.g., Near Gandhipuram Bus Stand, Coimbatore" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn" id="formSubmitBtn">
+                            <i class="fa-solid fa-server"></i> Commit Record to System Database
+                        </button>
+                    </form>
+                </div>
+
+                <div class="table-container">
+                    <table class="db-table">
+                        <thead>
+                            <tr>
+                               <th>ID</th>
+                               <th>Name</th>
+                               <th>Age</th>
+                               <th>Location Data Storage</th>
+                               <th>Date</th>
+                               <th>Time</th>
+                               <th>Case Status</th>
+                               <th style="text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="databaseTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        
+            <!-- VIEW SECTION C: AUTHORITY VERIFICATION DISPATCH TERMINAL STRIP COMPONENTS -->
+<section id="alerts-view" class="view-section">
+    
+    <div id="policeVerificationWidget" class="card" style="display: none; border: 2px solid #38bdf8; margin-bottom: 25px; background-color: var(--card-bg);">
+        <div class="card-header">
+            <h3 class="card-title" style="color: #38bdf8;">
+                <i class="fa-solid fa-triangle-exclamation"></i> Live SOS Incident Awaiting Field Validation
+            </h3>
+        </div>
+        
+        <div style="background: #0e172a; border: 1px solid #233356; padding: 15px; border-radius: 8px; margin-bottom: 15px; line-height: 1.6; color: white;">
+            <strong>Transmission ID:</strong> <span id="activeSosId">--</span> <br>
+            <strong>User Profiling Identity:</strong> <span id="activeSosName">--</span> <br>
+            <strong>Telemetry Stamp Time:</strong> <span id="activeSosTime">--</span>
+        </div>
+        
+        <div style="display: flex; gap: 10px;">
+            <button onclick="processPoliceDecision(true)" class="submit-btn" style="background: var(--status-resolved);">
+                <i class="fa-solid fa-check"></i> Genuine Threat (Commit)
+            </button>
+            <button onclick="processPoliceDecision(false)" class="submit-btn" style="background: var(--primary-color);">
+                <i class="fa-solid fa-trash-can"></i> False Alarm (Purge Field Data)
+            </button>
+        </div>
+    </div>
+
+                <div class="card" style="margin-bottom: 25px;">
+                    <div class="card-header">
+                        <h3 class="card-title" style="color: #f59e0b;"><i class="fa-solid fa-hourglass-half"></i> Incoming Police Verification Queue</h3>
+                    </div>
+                    <div class="table-container">
+                        <table class="db-table">
+                            <thead>
+                                <tr>
+                                    <th>Incident No</th>
+                                    <th>User Profile</th>
+                                    <th>Coordinates Target</th>
+                                    <th>Log Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="verificationTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="color: #10b981;"><i class="fa-solid fa-circle-check"></i> Authenticated Emergency Records</h3>
+                    </div>
+                    <div class="table-container">
+                        <table class="db-table">
+                            <thead>
+                                <tr>
+                                    <th>Incident No</th>
+                                    <th>User Profile</th>
+                                    <th>Verified Coordinates</th>
+                                    <th>Stamp Date</th>
+                                    <th>Stamp Time</th>
+                                    <th>Validation Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="confirmedTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        
+    <section id="live-location-view" class="view-section">
+
+    <div class="p-8 grid grid-cols-12 gap-6 items-start w-full bg-slate-50 min-h-screen font-sans text-slate-700">
+    
+    <div class="col-span-12 lg:col-span-7 space-y-6">
+        
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-sm font-bold text-slate-800 tracking-wide">Live GPS Map</h3>
+                <span class="flex items-center text-xs font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">
+                    <span class="w-2 h-2 bg-emerald-500 rounded-full mr-1.5 animate-pulse"></span> Live
+                </span>
+            </div>
+            
+            <div class="relative w-full h-[420px] rounded-xl overflow-hidden border border-slate-100">
+
+    <iframe
+        src="https://www.google.com/maps?q=13.0827,80.2707&z=15&output=embed"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy">
+    </iframe>
+
+    <!-- Live Badge -->
+    <div class="absolute top-4 right-4 bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full shadow">
+        ● LIVE
+    </div>
+
+    <!-- Current Location Button -->
+    <button
+        onclick="getCurrentLocation()"
+        class="absolute bottom-4 left-4 bg-white px-4 py-2 rounded-lg shadow hover:bg-gray-100 text-sm font-semibold">
+        📍 Current Location
+    </button>
+
+</div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+            <h3 class="text-sm font-bold text-slate-800 tracking-wide mb-4">Quick Actions</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                <button class="flex flex-col items-center justify-center p-3 rounded-xl border border-rose-100 bg-rose-50/30 hover:bg-rose-50 text-rose-600 transition text-center group">
+                    <div class="w-10 h-10 bg-white shadow-sm border border-rose-100 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-bold leading-tight">Get Current Location</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-3 rounded-xl border border-emerald-100 bg-emerald-50/30 hover:bg-emerald-50 text-emerald-600 transition text-center group">
+                    <div class="w-10 h-10 bg-white shadow-sm border border-emerald-100 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-bold leading-tight">Share Live Location</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-3 rounded-xl border border-sky-100 bg-sky-50/30 hover:bg-sky-50 text-sky-600 transition text-center group">
+                    <div class="w-10 h-10 bg-white shadow-sm border border-sky-100 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-bold leading-tight">Open in Google Maps</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-3 rounded-xl border border-purple-100 bg-purple-50/30 hover:bg-purple-50 text-purple-600 transition text-center group">
+                    <div class="w-10 h-10 bg-white shadow-sm border border-purple-100 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.253 8H18"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-bold leading-tight">Refresh Location</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-3 rounded-xl border border-red-100 bg-red-50/40 hover:bg-red-100 text-red-600 transition text-center group">
+                    <div class="w-10 h-10 bg-red-500 text-white shadow-sm rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 transition">
+                        <span class="text-xs font-black">SOS</span>
+                    </div>
+                    <span class="text-[10px] font-bold leading-tight">Send SOS with Location</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="w-full sm:w-3/5">
+                <h3 class="text-sm font-bold text-slate-800 tracking-wide">Share Live Location</h3>
+                <p class="text-xs text-slate-400 mt-0.5">Share your real-time location with your emergency contacts</p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <button class="flex items-center space-x-2 px-3 py-2 bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-xl hover:bg-emerald-100 transition text-xs font-semibold">
+                        <span class="font-bold">WhatsApp</span>
+                    </button>
+                    <button class="flex items-center space-x-2 px-3 py-2 bg-sky-50 text-sky-600 border border-sky-100 rounded-xl hover:bg-sky-100 transition text-xs font-semibold">
+                        <span class="font-bold">SMS</span>
+                    </button>
+                    <button class="flex items-center space-x-2 px-3 py-2 bg-purple-50 text-purple-600 border border-purple-100 rounded-xl hover:bg-purple-100 transition text-xs font-semibold">
+                        <span class="font-bold">Copy Link</span>
+                    </button>
+                    <button class="flex items-center space-x-2 px-3 py-2 bg-amber-50 text-amber-600 border border-amber-100 rounded-xl hover:bg-amber-100 transition text-xs font-semibold">
+                        <span class="font-bold">Share with Contacts</span>
+                    </button>
+                </div>
+            </div>
+            <div class="w-full sm:w-1/3 flex justify-center relative py-2">
+                <div class="w-24 h-24 bg-gradient-to-tr from-pink-50 to-rose-100 rounded-full flex items-center justify-center shadow-inner relative">
+                    <svg class="w-12 h-12 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    <svg class="w-6 h-6 text-rose-600 absolute top-4 right-4 animate-bounce" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="col-span-12 lg:col-span-5 space-y-6">
+
+    <!-- Current Location Details -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+
+        <h3 class="text-sm font-bold text-slate-800 tracking-wide mb-4">
+            Current Location Details
+        </h3>
+
+        <div class="divide-y divide-slate-100">
+
+            <div class="flex py-3 items-center justify-between gap-4">
+                <span class="text-xs font-medium text-slate-500">
+                    Current Address
+                </span>
+
+                <span id="address"
+                    class="text-xs font-semibold text-slate-800 text-right w-2/3">
+                    Fetching...
+                </span>
+            </div>
+
+            <div class="flex py-3 items-center justify-between">
+                <span class="text-xs font-medium text-slate-500">
+                    Latitude
+                </span>
+
+                <span id="latitude"
+                    class="text-xs font-bold text-emerald-600 font-mono">
+                    --
+                </span>
+            </div>
+
+            <div class="flex py-3 items-center justify-between">
+                <span class="text-xs font-medium text-slate-500">
+                    Longitude
+                </span>
+
+                <span id="longitude"
+                    class="text-xs font-bold text-emerald-600 font-mono">
+                    --
+                </span>
+            </div>
+
+            <div class="flex py-3 items-center justify-between">
+                <span class="text-xs font-medium text-slate-500">
+                    GPS Status
+                </span>
+
+                <span id="gpsStatus"
+                    class="text-xs font-bold text-green-600">
+                    Waiting...
+                </span>
+            </div>
+
+            <div class="flex py-3 items-center justify-between">
+                <span class="text-xs font-medium text-slate-500">
+                    Accuracy
+                </span>
+
+                <span id="accuracy"
+                    class="text-xs font-semibold text-slate-700">
+                    --
+                </span>
+            </div>
+
+            <div class="flex py-3 items-center justify-between">
+                <span class="text-xs font-medium text-slate-500">
+                    Last Updated
+                </span>
+
+                <span id="updated"
+                    class="text-xs text-slate-500">
+                    --
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+ <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+
+    <div class="flex justify-between items-center mb-4">
+        <h3 class="text-sm font-bold text-slate-800">
+            Location History
+        </h3>
+
+        <span class="text-xs font-bold text-green-600 animate-pulse">
+            ● Live Tracking
+        </span>
+    </div>
+
+    <div class="max-h-[420px] overflow-y-auto">
+
+        <table class="w-full text-left border-collapse">
+
+            <thead class="sticky top-0 bg-white">
+
+                <tr class="border-b border-slate-200">
+
+                    <th class="py-3 text-xs font-bold text-slate-500">
+                        Time
+                    </th>
+                    <th class="py-3 text-xs font-bold text-slate-500">
+                        Current Location
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="historyTable">
+                <tr>
+                    <td colspan="2" class="text-center py-10 text-slate-400">
+                        Waiting for GPS Location...
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <div class="col-span-12 bg-rose-50 border border-rose-100/70 rounded-xl px-4 py-3 flex flex-col sm:flex-row gap-2 sm:gap-0 items-center justify-between text-xs text-rose-700 mt-4">
+        <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-rose-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            <span class="font-medium">Your location is automatically shared with your emergency contacts during SOS alerts.</span>
+        </div>
+        <div class="flex items-center space-x-1 font-bold tracking-wide uppercase text-[10px] text-rose-500">
+            <span>Stay safe. Stay alert.</span>
+            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
+        </div>
+    </div>
+</div> 
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+</section>
+<section id="safe-zones-view" class="view-section">
+
+<div class="p-8 grid grid-cols-12 gap-6 items-start w-full bg-slate-50 min-h-screen font-sans text-slate-700">
+    
+    <div class="col-span-12 grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            </div>
+            <div>
+                <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Police Stations</p>
+                <p class="text-xl font-bold text-slate-800 leading-tight">5 <span class="text-xs font-normal text-slate-400 normal-case">Nearby</span></p>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div>
+                <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Hospitals</p>
+                <p class="text-xl font-bold text-slate-800 leading-tight">8 <span class="text-xs font-normal text-slate-400 normal-case">Nearby</span></p>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            </div>
+            <div>
+                <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Help Centers</p>
+                <p class="text-xl font-bold text-slate-800 leading-tight">6 <span class="text-xs font-normal text-slate-400 normal-case">Nearby</span></p>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h3m-6 0a1 1 0 001-1v4a1 1 0 00-1-1m-5 0a1 1 0 011-1v4a1 1 0 01-1 1"></path></svg>
+            </div>
+            <div>
+                <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Shelters</p>
+                <p class="text-xl font-bold text-slate-800 leading-tight">4 <span class="text-xs font-normal text-slate-400 normal-case">Nearby</span></p>
+            </div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-3.5">
+            <div class="w-11 h-11 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+            </div>
+            <div>
+                <p class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Safe Routes</p>
+                <p class="text-xl font-bold text-slate-800 leading-tight">3 <span class="text-xs font-normal text-slate-400 normal-case">Recommended</span></p>
+            </div>
+        </div>
+    </div>
+
+<div class="col-span-12 lg:col-span-4 space-y-4">
+    <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
+
+        <h3 class="text-lg font-bold text-slate-800 mb-4">
+            Nearby Safe Places
+        </h3>
+
+        <ul class="space-y-3 text-sm">
+
+            <li class="flex items-center gap-3 p-2 bg-blue-50 rounded-lg">
+                <span class="text-xl">🚔</span>
+                <div>
+                    <p class="font-semibold text-slate-800">Police Station</p>
+                    <p id="policeDistance" class="text-slate-600">
+                        Calculating...
+                    </p>
+                </div>
+            </li>
+
+            <li class="flex items-center gap-3 p-2 bg-red-50 rounded-lg">
+                <span class="text-xl">🏥</span>
+                <div>
+                    <p class="font-semibold text-slate-800">Hospital</p>
+                    <p id="hospitalDistance" class="text-slate-600">
+                        Calculating...
+                    </p>
+                </div>
+            </li>
+
+            <li class="flex items-center gap-3 p-2 bg-purple-50 rounded-lg">
+                <span class="text-xl">🆘</span>
+                <div>
+                    <p class="font-semibold text-slate-800">Help Centre</p>
+                    <p id="helpDistance" class="text-slate-600">
+                        Calculating...
+                    </p>
+                </div>
+            </li>
+
+            <li class="flex items-center gap-3 p-2 bg-orange-50 rounded-lg">
+                <span class="text-xl">🏠</span>
+                <div>
+                    <p class="font-semibold text-slate-800">Shelter</p>
+                    <p id="shelterDistance" class="text-slate-600">
+                        Calculating...
+                    </p>
+                </div>
+            </li>
+
+            <li class="flex items-center gap-3 p-2 bg-green-50 rounded-lg">
+                <span class="text-xl">🛣️</span>
+                <div>
+                    <p class="font-semibold text-slate-800">Safe Route</p>
+                    <p id="routeDistance" class="text-slate-600">
+                        Calculating...
+                    </p>
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+            
+    
+    
+
+    <div class="col-span-12 lg:col-span-8">
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 relative">
+            <h3 class="text-sm font-bold text-slate-800 tracking-wide mb-4">Safe Zone Map</h3>
+            <div class="relative w-full h-[400px] rounded-xl overflow-hidden border border-slate-200">
+
+    <!-- Google Map -->
+    <iframe id="safeZoneMap"
+        class="w-full h-full"
+        src="https://maps.google.com/maps?q=13.0827,80.2707&z=15&output=embed"
+        allowfullscreen
+        loading="lazy">
+    </iframe>
+
+    <!-- Live Badge -->
+    <div class="absolute top-3 right-3 bg-white px-3 py-1 rounded-full shadow text-xs font-bold text-emerald-600 flex items-center">
+        <span class="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></span>
+        Live GPS
+    </div>
+
+</div>
+            
+        </div>
+    </div>
+<div class="col-span-12 md:col-span-4">
+    <div class="bg-emerald-50/40 border border-emerald-100 rounded-2xl p-5 shadow-sm flex flex-col justify-between h-full min-h-[195px]">
+
+        <div>
+            <div class="flex items-center space-x-2 text-emerald-700 font-bold text-xs mb-1">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0">
+                    </path>
+                </svg>
+
+                <span>Safe Route Suggestion</span>
+            </div>
+
+            <p class="text-[11px] text-slate-500 leading-normal">
+                Safe route from your current location to the nearest Police Station.
+            </p>
+        </div>
+
+        <div class="border-t border-b border-emerald-100 py-3 my-3 space-y-2 text-xs">
+
+            <div class="flex justify-between">
+                <span class="font-semibold">Destination</span>
+                <span id="routeDestination"
+                    class="font-bold text-emerald-700">
+                    Detecting...
+                </span>
+            </div>
+
+            <div class="flex justify-between">
+                <span class="font-semibold">Distance</span>
+                <span id="routeKm"
+                    class="font-bold text-emerald-700">
+                    --
+                </span>
+            </div>
+
+            <div class="flex justify-between">
+                <span class="font-semibold">Estimated Time</span>
+                <span id="routeTime"
+                    class="font-bold text-emerald-700">
+                    --
+                </span>
+            </div>
+
+        </div>
+
+        <button id="viewRoute"
+            class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow">
+
+            View Route in Google Maps
+
+        </button>
+
+    </div>
+</div>
+
+    <div class="col-span-12 md:col-span-4">
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 h-full flex flex-col justify-between min-h-[195px]">
+            <div>
+                <div class="flex items-center space-x-2 text-red-600 font-bold text-xs mb-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    <span>Danger Zones</span>
+                </div>
+                <p class="text-[11px] text-slate-400">Avoid entering these registered high-risk proximity sectors.</p>
+            </div>
+
+            <div class="space-y-2 mt-3">
+                <div class="flex items-center justify-between text-xs">
+                    <span class="font-semibold text-slate-700">Purasawalkam High Risk Area</span>
+                    <span class="text-[9px] font-bold text-red-600 bg-red-50 border border-red-100 px-2 py-0.5 rounded">Avoid</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                    <span class="font-semibold text-slate-700">Perambur Isolated Area</span>
+                    <span class="text-[9px] font-bold text-red-600 bg-red-50 border border-red-100 px-2 py-0.5 rounded">Avoid</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                    <span class="font-semibold text-slate-700">Dark Streets - Chetpet</span>
+                    <span class="text-[9px] font-bold text-red-600 bg-red-50 border border-red-100 px-2 py-0.5 rounded">Avoid</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-4">
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-100 h-full flex items-start justify-between min-h-[195px] gap-2">
+            <div class="space-y-2.5 w-2/3">
+                <div class="flex items-center space-x-1.5 text-amber-500 font-bold text-xs">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <span>Safety Tips</span>
+                </div>
+                <ul class="text-[10px] text-slate-500 font-medium space-y-1.5 list-none">
+                    <li class="flex items-start"><span class="text-amber-500 mr-1">✔️</span> Prefer well lit and populated routes.</li>
+                    <li class="flex items-start"><span class="text-amber-500 mr-1">✔️</span> Share your live location with trusted contacts.</li>
+                    <li class="flex items-start"><span class="text-amber-500 mr-1">✔️</span> In case of emergency, press SOS immediately.</li>
+                    <li class="flex items-start"><span class="text-amber-500 mr-1">✔️</span> Avoid isolated places and dark streets.</li>
+                </ul>
+            </div>
+            
+            <div class="w-1/3 flex justify-end items-end h-full self-end pt-4">
+                <div class="relative bg-rose-100 rounded-full w-16 h-16 flex items-center justify-center text-rose-500">
+                    <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                    <div class="absolute -bottom-1 -right-1 bg-emerald-500 text-white p-0.5 rounded-full border border-white"><svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.9c.775-.242 1.624-.37 2.505-.37 1.483 0 2.87.355 4.09 1.002A11.96 11.96 0 0112.84 4.53c1.22-.647 2.607-1.002 4.09-1.002.881 0 1.73.128 2.505.37a.75.75 0 01.523.682l.006 8.528c0 .324-.209.613-.518.7a13.34 13.34 0 00-4.612 2.115.75.75 0 01-.84 0 13.34 13.34 0 00-4.612-2.115.75.75 0 01-.652-.71l-.006-8.527a.75.75 0 01.53-.682z" clip-rule="evenodd"></path></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-span-12 bg-blue-50/50 border border-blue-100 rounded-xl px-4 py-2.5 flex items-center justify-between text-[11px] text-blue-800">
+        <div class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span class="font-medium">Safe Zones are updated regularly. Stay aware and stay safe!</span>
+        </div>
+        <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.9c.775-.242 1.624-.37 2.505-.37 1.483 0 2.87.355 4.09 1.002A11.96 11.96 0 0112.84 4.53c1.22-.647 2.607-1.002 4.09-1.002.881 0 1.73.128 2.505.37a.75.75 0 01.523.682l.006 8.528c0 .324-.209.613-.518.7a13.34 13.34 0 00-4.612 2.115.75.75 0 01-.84 0 13.34 13.34 0 00-4.612-2.115.75.75 0 01-.652-.71l-.006-8.527a.75.75 0 01.53-.682z" clip-rule="evenodd"></path></svg>
+    </div>
+    </section>
+        <section id="contacts-view" class="view-section">
+
+    <!-- Page Header -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+        <div>
+            <h2 class="text-2xl font-bold text-slate-800">Emergency Contacts</h2>
+            <p class="text-slate-500 mt-1">
+                Manage your trusted emergency contacts for quick access.
+            </p>
+        </div>
+
+        <button id="addContactBtn"
+            class="mt-4 md:mt-0 bg-pink-600 hover:bg-pink-700 text-white px-5 py-2.5 rounded-xl font-semibold">
+            + Add Contact
+        </button>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+
+        <div class="bg-white rounded-2xl shadow-sm p-5 border border-slate-100">
+            <p class="text-sm text-slate-500">Total Contacts</p>
+            <h3 id="totalContacts" class="text-3xl font-bold mt-2">0</h3>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-5 border border-slate-100">
+            <p class="text-sm text-slate-500">Emergency</p>
+            <h3 id="emergencyContacts" class="text-3xl font-bold mt-2">0</h3>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-5 border border-slate-100">
+            <p class="text-sm text-slate-500">One Tap Call</p>
+            <h3 id="oneTapContacts" class="text-3xl font-bold mt-2">0</h3>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-5 border border-slate-100">
+            <p class="text-sm text-slate-500">Family & Friends</p>
+            <h3 id="familyContacts" class="text-3xl font-bold mt-2">0</h3>
+        </div>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="grid grid-cols-12 gap-6">
+
+        <!-- Contacts Table -->
+        <div class="col-span-12 lg:col-span-8 bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+
+            <div class="flex flex-col md:flex-row gap-4 justify-between mb-5">
+
+                <input
+                    id="searchContact"
+                    type="text"
+                    placeholder="Search contacts..."
+                    class="border border-slate-300 rounded-xl px-4 py-2 w-full">
+
+                <select
+                    id="contactFilter"
+                    class="border border-slate-300 rounded-xl px-4 py-2">
+
+                    <option>All Contacts</option>
+                    <option>Family</option>
+                    <option>Friends</option>
+                    <option>Emergency</option>
+
+                </select>
+
+            </div>
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full">
+
+                    <thead class="bg-slate-100">
+
+                        <tr>
+
+                            <th class="text-left p-3">Name</th>
+                            <th class="text-left p-3">Relationship</th>
+                            <th class="text-left p-3">Phone</th>
+                            <th class="text-center p-3">Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="contactTable">
+
+                        <!-- Contacts will load here -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- Contact Details -->
+        <div class="col-span-12 lg:col-span-4 bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
+
+            <h3 class="text-xl font-bold text-center mb-5">Contact Details</h3>
+
+            <div class="flex justify-center mb-5">
+
+                <div id="avatar"
+                    class="w-24 h-24 rounded-full bg-pink-600 text-white flex items-center justify-center text-4xl font-bold">
+                    ?
+                </div>
+
+            </div>
+
+            <h4 id="detailName" class="text-center text-xl font-bold">
+                Select Contact
+            </h4>
+
+            <p id="detailRelationship"
+                class="text-center text-pink-600 mb-5">
+                --
+            </p>
+
+            <div class="space-y-4">
+
+                <div>
+                    <p class="font-semibold">Phone</p>
+                    <p id="detailPhone">--</p>
+                </div>
+
+                <div>
+                    <p class="font-semibold">Priority</p>
+                    <p id="detailPriority">--</p>
+                </div>
+
+                <div>
+                    <p class="font-semibold">Address</p>
+                    <p id="detailAddress">--</p>
+                </div>
+
+                <div>
+                    <p class="font-semibold">Notes</p>
+                    <p id="detailNotes">--</p>
+                </div>
+
+            </div>
+
+            <button id="callNow"
+                class="w-full mt-6 bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-xl">
+                📞 Call Now
+            </button>
+
+            <button id="shareContact"
+                class="w-full mt-3 border border-pink-600 text-pink-600 py-3 rounded-xl">
+                📤 Share Contact
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<section id="reports-view" class="view-section">
+    <div class="nsr-page-wrapper">
+        <!-- --- MAIN CONTENT CONTAINER --- -->
+        <div class="nsr-main-layout-container">
+            
+            <!-- Unique Section Header Wrapper -->
+            <div class="nsr-top-section-header">
+                <div class="nsr-header-meta">
+                    <div class="nsr-badge-wrap">
+                        <i class="fa-solid fa-file-invoice"></i>
+                    </div>
+                    <div>
+                        <h2>File an Incident Report</h2>
+                        <p class="nsr-subtitle-text">Document details safely. In a live emergency, please use the SOS Emergency channel instantly.</p>
+                    </div>
+                </div>
+                <div class="nsr-user-block">
+                    <div class="nsr-bell-notify">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="nsr-count-dot">3</span>
+                    </div>
+                    <div class="nsr-vertical-divider"></div>
+                    <div class="nsr-user-avatar">VU</div>
+                    <span class="nsr-profile-name">Verified User</span>
+                    <i class="fa-solid fa-chevron-down nsr-drop-arrow"></i>
+                </div>
+            </div>
+
+            <!-- Inner Layout Workspace Body -->
+            <div class="nsr-workspace-body">
+                <div class="nsr-split-grid">
+                    
+                    <!-- Left Column: Form Panel -->
+                    <div class="nsr-content-card nsr-form-panel">
+                        <h3>Incident Details Form</h3>
+                        <form id="nsrIncidentForm" class="nsr-interactive-form">
+                            <div class="nsr-input-group">
+                                <label for="nsrIncidentType">Incident Type <span class="nsr-alert-star">*</span></label>
+                                <select id="nsrIncidentType" required>
+                                    <option value="" disabled selected>Select incident category</option>
+                                    <option value="Harassment">Stalking / Harassment</option>
+                                    <option value="Physical Assault">Physical Assault</option>
+                                    <option value="Suspicious Activity">Suspicious Activity / Person</option>
+                                    <option value="Domestic Violence">Domestic Violence</option>
+                                    <option value="Other">Other Safety Concern</option>
+                                </select>
+                            </div>
+
+                            <div class="nsr-input-row">
+                                <div class="nsr-input-group">
+                                    <label for="nsrIncidentDate">Date of Incident <span class="nsr-alert-star">*</span></label>
+                                    <input type="date" id="nsrIncidentDate" required>
+                                </div>
+                                <div class="nsr-input-group">
+                                    <label for="nsrIncidentTime">Approximate Time <span class="nsr-alert-star">*</span></label>
+                                    <input type="time" id="nsrIncidentTime" required>
+                                </div>
+                            </div>
+
+                            <div class="nsr-input-group">
+                                <label for="nsrIncidentLocation">Location / Landmark <span class="nsr-alert-star">*</span></label>
+                                <div class="nsr-icon-input-box">
+                                    <i class="fa-solid fa-location-dot nsr-field-icon"></i>
+                                    <input type="text" id="nsrIncidentLocation" placeholder="e.g., Anna Nagar Metro Station, Chennai" required>
+                                </div>
+                            </div>
+
+                            <div class="nsr-input-group">
+                                <label for="nsrIncidentDescription">Detailed Description <span class="nsr-alert-star">*</span></label>
+                                <textarea id="nsrIncidentDescription" rows="4" placeholder="Please provide as much clear detail as possible (clothing description, vehicle numbers, sequence of events)..." required></textarea>
+                            </div>
+
+                            <div class="nsr-input-group">
+                                <label>Evidence Upload (Images / Audio)</label>
+                                <div class="nsr-upload-dropzone" id="nsrDropZone">
+                                    <i class="fa-solid fa-cloud-arrow-up nsr-cloud-svg"></i>
+                                    <p>Drag & drop files here or <span class="nsr-highlight-link">browse</span></p>
+                                    <input type="file" id="nsrFileInput" multiple hidden>
+                                    <div id="nsrFilePreviewList" class="nsr-preview-box"></div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="nsr-submit-action">
+                                <i class="fa-solid fa-paper-plane"></i> Submit Secure Report
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Instructions & History Tracking -->
+                    <div class="nsr-side-column">
+                        <div class="nsr-content-card nsr-banner-info">
+                            <div class="nsr-banner-head">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <h4>Privacy Assurance</h4>
+                            </div>
+                            <p>All compiled submissions are strictly encrypted. This documentation can act as timestamped legal proof if you choose to approach law enforcement authorities later.</p>
+                        </div>
+
+                        <div class="nsr-content-card nsr-history-panel">
+                            <h3>Recent Submitted Logs</h3>
+                            <div class="nsr-feed-list" id="nsrLogList">
+                                <!-- JavaScript will inject items dynamically here -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<section id="tips-view" class="view-section">
+<div class="nst-layout-container">
+    
+    <!-- Hero Header Block -->
+    <div class="nst-hero-section">
+        <div class="nst-hero-left-pane">
+            <h1 class="nst-section-title">Safety Tips</h1>
+            <div class="nst-accent-line"></div>
+            <p class="nst-section-desc">Smart, simple steps can make a big difference. Be aware, be prepared, be safe.</p>
+            
+            <div class="nst-priority-card">
+                <div class="nst-shield-icon-box">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="nst-priority-details">
+                    <h4>Your Safety is Our Priority</h4>
+                    <p>Empowering you with knowledge today for a safer tomorrow.</p>
+                </div>
+            </div>
+        </div>
+        <div class="nst-hero-right-pane">
+            <img src="./images/safety_girl_image.png" alt="Safety Tips Banner" class="nst-banner-image">
+        </div>
+    </div>
+
+    <!-- 8-Card Tips Layout Grid -->
+    <div class="nst-cards-layout-grid">
+        <!-- Card 1 -->
+        <div class="nst-card-item nst-border-pink">
+            <div class="nst-circle-icon-wrapper nst-fill-pink">
+                <i class="fa-solid fa-eye"></i>
+            </div>
+            <h3>1. Be Aware of Surroundings</h3>
+            <p>Stay alert to your surroundings and avoid distractions while traveling.</p>
+            <div class="nst-card-bottom-bar nst-bar-pink"></div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="nst-card-item nst-border-purple">
+            <div class="nst-circle-icon-wrapper nst-fill-purple">
+                <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <h3>2. Share Your Location</h3>
+            <p>Share your live location with trusted family or friends while traveling.</p>
+            <div class="nst-card-bottom-bar nst-bar-purple"></div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="nst-card-item nst-border-blue">
+            <div class="nst-circle-icon-wrapper nst-fill-blue">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <h3>3. Travel in Well-Lit Areas</h3>
+            <p>Prefer well-lit and crowded places. Avoid isolated or dark areas.</p>
+            <div class="nst-card-bottom-bar nst-bar-blue"></div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="nst-card-item nst-border-orange">
+            <div class="nst-circle-icon-wrapper nst-fill-orange">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+            <h3>4. Keep Emergency Numbers Handy</h3>
+            <p>Save important numbers like police (112), women helpline (1091) and family.</p>
+            <div class="nst-card-bottom-bar nst-bar-orange"></div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="nst-card-item nst-border-green">
+            <div class="nst-circle-icon-wrapper nst-fill-green">
+                <i class="fa-solid fa-shield-heart"></i>
+            </div>
+            <h3>5. Trust Your Instincts</h3>
+            <p>If something feels wrong, trust your instincts and remove yourself from the situation.</p>
+            <div class="nst-card-bottom-bar nst-bar-green"></div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="nst-card-item nst-border-magenta">
+            <div class="nst-circle-icon-wrapper nst-fill-magenta">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+            <h3>6. Carry a Safety Device</h3>
+            <p>Carry a whistle, pepper spray or any safety device for emergencies.</p>
+            <div class="nst-card-bottom-bar nst-bar-magenta"></div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="nst-card-item nst-border-teal">
+            <div class="nst-circle-icon-wrapper nst-fill-teal">
+                <i class="fa-solid fa-share-nodes"></i>
+            </div>
+            <h3>7. Inform Your Close Ones</h3>
+            <p>Let your family or friends know about your travel plans and updates.</p>
+            <div class="nst-card-bottom-bar nst-bar-teal"></div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="nst-card-item nst-border-violet">
+            <div class="nst-circle-icon-wrapper nst-fill-violet">
+                <i class="fa-solid fa-hand-fist"></i>
+            </div>
+            <h3>8. Learn Self Defense</h3>
+            <p>Learn basic self-defense techniques. Confidence is your best protection.</p>
+            <div class="nst-card-bottom-bar nst-bar-violet"></div>
+        </div>
+    </div>
+
+    <!-- Bottom Metadata Panel Rows -->
+    <div class="nst-bottom-panels-row">
+        
+        <!-- Emergency Numbers Segment -->
+        <div class="nst-panel-card">
+            <h3 class="nst-panel-header-title"><i class="fa-solid fa-phone"></i> Emergency Numbers</h3>
+            <div class="nst-contact-box">
+                <div class="nst-contact-icon-avatar nst-avatar-blue">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <div class="nst-contact-text-box">
+                    <span class="nst-sub-label">Police</span>
+                    <span class="nst-number-call nst-txt-blue">112</span>
+                </div>
+            </div>
+            <div class="nst-contact-box">
+                <div class="nst-contact-icon-avatar nst-avatar-pink">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <div class="nst-contact-text-box">
+                    <span class="nst-sub-label">Women Helpline</span>
+                    <span class="nst-number-call nst-txt-pink">1091</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reminders Segment -->
+        <div class="nst-panel-card">
+            <h3 class="nst-panel-header-title nst-txt-pink">Safe Travel Reminders</h3>
+            <ul class="nst-checklist-items">
+                <li><i class="fa-solid fa-circle-check"></i> Verify cab/auto details before starting your journey.</li>
+                <li><i class="fa-solid fa-circle-check"></i> Avoid sharing personal information with strangers.</li>
+                <li><i class="fa-solid fa-circle-check"></i> Keep your phone charged and internet active.</li>
+                <li><i class="fa-solid fa-circle-check"></i> Use Nirbhaya SOS feature in case of danger.</li>
+            </ul>
+        </div>
+
+        <!-- Support Accent Frame Box -->
+        <div class="nst-panel-card nst-tinted-pink-bg">
+            <h2 class="nst-remember-title">Remember!</h2>
+            <p class="nst-remember-p">Your safety matters the most. We are here for you.</p>
+            <div class="nst-heart-container">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="nst-hand-container">
+                <i class="fa-solid fa-hand-holding"></i>
+</div>
+        </div>
+    </div>
+<!-- Continuous Wide Status Banner -->
+    <div class="nst-bottom-alert-banner">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Stay safe, stay confident, you are not alone!</span>
+        <i class="fa-solid fa-heart nst-mini-heart"></i>
+    </div>
+</div>
+</section>
+<section id="settings-view" class="view-section">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
+
+  <div class="bg-white rounded-2xl border border-gray-100 shadow-xs p-6 space-y-5">
+    <div class="flex items-center space-x-2 text-[#E91E63] font-semibold text-lg pb-2 border-b border-gray-100">
+      <i data-lucide="user" class="w-5 h-5"></i>
+      <h2>Account Settings</h2>
+    </div>
+    <div class="divide-y divide-gray-100 text-sm">
+      <div class="flex justify-between items-center py-3.5 group cursor-pointer">
+        <div>
+          <span class="text-gray-500 font-medium block">Full Name</span>
+          <span id="userName" class="text-gray-900 font-semibold mt-0.5 block">Subiksha</span>
+        </div>
+        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition"></i>
+      </div>
+      <div class="flex justify-between items-center py-3.5 group cursor-pointer">
+        <div>
+          <span class="text-gray-500 font-medium block">Email Address</span>
+          <span id="userEmail" class="text-gray-900 font-semibold mt-0.5 block">subiksha@example.com</span>
+        </div>
+        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition"></i>
+      </div>
+      <div class="flex justify-between items-center py-3.5 group cursor-pointer">
+        <div>
+          <span class="text-gray-500 font-medium block">Phone Number</span>
+          <span id="userPhone" class="text-gray-900 font-semibold mt-0.5 block">+19 98765 43210</span>
+        </div>
+        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition"></i>
+      </div>
+      <div class="flex justify-between items-center py-3.5 group cursor-pointer">
+        <div>
+          <span class="text-gray-500 font-medium block">Password</span>
+          <span id="userPassword" class="text-gray-900 font-semibold mt-0.5 block">************</span>
+        </div>
+        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400 group-hover:text-gray-600 transition"></i>
+      </div>
+    </div>
+    <button id="changePasswordBtn" class="mt-2 px-4 py-2 border border-[#E91E63] text-[#E91E63] font-medium text-sm rounded-lg hover:bg-pink-50 transition flex items-center space-x-2">
+      <i data-lucide="lock" class="w-4 h-4"></i>
+      <span>Change Password</span>
+    </button>
+  </div>
+
+  <div class="bg-white rounded-2xl border border-gray-100 shadow-xs p-6 space-y-5">
+    <div class="flex items-center space-x-2 text-[#E91E63] font-semibold text-lg pb-2 border-b border-gray-100">
+      <i data-lucide="shield-check" class="w-5 h-5"></i>
+      <h2>Safety Preferences</h2>
+    </div>
+    <div class="space-y-5">
+      <div class="flex items-start justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="video" class="w-5 h-5 text-gray-700 mt-0.5"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Auto Start Video Recording on SOS</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Automatically start recording when SOS is activated.</p>
+          </div>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer select-none">
+          <input id="videoRecording" type="checkbox" checked class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E91E63]"></div>
+        </label>
+      </div>
+      <div class="flex items-start justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="map-pin" class="w-5 h-5 text-gray-700 mt-0.5"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Share Live Location on SOS</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Share your live location with police and contacts.</p>
+          </div>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer select-none">
+          <input id="liveLocation" type="checkbox" checked class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E91E63]"></div>
+        </label>
+      </div>
+      <div class="flex items-start justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="users" class="w-5 h-5 text-gray-700 mt-0.5"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Send Alerts to Emergency Contacts</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Notify your emergency contacts during SOS.</p>
+          </div>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer select-none">
+          <input id="emergencyContacts" type="checkbox" checked class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E91E63]"></div>
+        </label>
+      </div>
+      <div class="flex items-start justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="volume-2" class="w-5 h-5 text-gray-700 mt-0.5"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Loud Siren on SOS</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Play a loud siren when SOS is activated.</p>
+            <audio id="sirenAudio" preload="auto">
+    <source src="./siren sound.mp3" type="audio/mpeg">
+</audio>
+          </div>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer select-none">
+          <input id="loudSiren" type="checkbox" class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E91E63]"></div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-2xl border border-gray-100 shadow-xs p-6 space-y-5">
+    <div class="flex items-center space-x-2 text-[#E91E63] font-semibold text-lg pb-2 border-b border-gray-100">
+      <i data-lucide="bell" class="w-5 h-5"></i>
+      <h2>Notification Settings</h2>
+    </div>
+    <div class="space-y-5">
+      <div class="flex items-start justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="bell-ring" class="w-5 h-5 text-gray-700 mt-0.5"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">SOS Alerts</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Receive notifications for SOS updates.</p>
+          </div>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer select-none">
+          <input id="sosAlerts" type="checkbox" checked class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E91E63]"></div>
+        </label>
+      </div>
+      <div class="flex items-start justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="info" class="w-5 h-5 text-gray-700 mt-0.5"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">System Updates</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Receive important system notifications.</p>
+          </div>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer select-none">
+          <input id="systemUpdates" type="checkbox" checked class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E91E63]"></div>
+        </label>
+      </div>
+      <div class="flex items-start justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="tag" class="w-5 h-5 text-gray-700 mt-0.5"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Promotions & Tips</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Receive safety tips and useful information.</p>
+          </div>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer select-none">
+          <input id="promotions" type="checkbox" class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E91E63]"></div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-2xl border border-gray-100 shadow-xs p-6 space-y-5">
+    <div class="flex items-center space-x-2 text-[#E91E63] font-semibold text-lg pb-2 border-b border-gray-100">
+      <i data-lucide="lock" class="w-5 h-5"></i>
+      <h2>Privacy Settings</h2>
+    </div>
+    <div class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="user-check" class="w-5 h-5 text-gray-700"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Profile Visibility</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Control who can see your profile information.</p>
+          </div>
+        </div>
+        <select id="profileVisibility" class="text-sm bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 font-medium text-gray-800 focus:outline-none focus:ring-1 focus:ring-[#E91E63]">
+          <option>Only Me</option>
+          <option>Contacts Only</option>
+          <option>Public</option>
+        </select>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="map-pin-check" class="w-5 h-5 text-gray-700"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Location Visibility</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Control who can see your live location.</p>
+          </div>
+        </div>
+        <select id="locationVisibility" class="text-sm bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 font-medium text-gray-800 focus:outline-none focus:ring-1 focus:ring-[#E91E63]">
+          <option>Only During SOS</option>
+          <option>Always</option>
+          <option>Never</option>
+        </select>
+      </div>
+      <div class="flex items-start justify-between pt-2">
+        <div class="flex space-x-3">
+          <i data-lucide="database" class="w-5 h-5 text-gray-700 mt-0.5"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Data Sharing</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Allow anonymous data to improve safety services.</p>
+          </div>
+        </div>
+        <label class="relative inline-flex items-center cursor-pointer select-none">
+          <input id="dataSharing" type="checkbox" checked class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E91E63]"></div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-2xl border border-gray-100 shadow-xs p-6 space-y-5">
+    <div class="flex items-center space-x-2 text-[#E91E63] font-semibold text-lg pb-2 border-b border-gray-100">
+      <i data-lucide="sliders" class="w-5 h-5"></i>
+      <h2>Other Settings</h2>
+    </div>
+    <div class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="globe" class="w-5 h-5 text-gray-700"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Language</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Choose your preferred language.</p>
+          </div>
+        </div>
+        <select id="languageSelect" class="text-sm bg-gray-50 border border-gray-200 rounded-lg px-6 py-1.5 font-medium text-gray-800 focus:outline-none focus:ring-1 focus:ring-[#E91E63]">
+          <option>English</option>
+          <option>Hindi</option>
+          <option>Tamil</option>
+        </select>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex space-x-3">
+          <i data-lucide="palette" class="w-5 h-5 text-gray-700"></i>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Theme</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Choose your preferred theme.</p>
+          </div>
+        </div>
+        <select id="themeSelect" class="text-sm bg-gray-50 border border-gray-200 rounded-lg px-6 py-1.5 font-medium text-gray-800 focus:outline-none focus:ring-1 focus:ring-[#E91E63]">
+          <option>Light Mode</option>
+          <option>Dark Mode</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-red-50/40 rounded-2xl border border-red-100 shadow-xs p-6 space-y-5">
+    <div class="flex items-center space-x-2 text-red-600 font-semibold text-lg pb-2 border-b border-red-100">
+      <i data-lucide="triangle-alert" class="w-5 h-5"></i>
+      <h2>Danger Zone</h2>
+    </div>
+    <div class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="flex space-x-3">
+          <div class="p-2 bg-red-100 text-red-600 rounded-lg">
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Clear All Data</h3>
+            <p class="text-xs text-gray-500 mt-0.5">This will remove all your data from the system.</p>
+          </div>
+        </div>
+        <button id="clearDataBtn" class="px-4 py-2 bg-white border border-red-200 text-red-600 font-medium text-sm rounded-lg hover:bg-red-50 transition shadow-xs">
+          Clear Data
+        </button>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex space-x-3">
+          <div class="p-2 bg-red-100 text-red-600 rounded-lg">
+            <i data-lucide="user-x" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">Deactivate Account</h3>
+            <p class="text-xs text-gray-500 mt-0.5">Temporarily deactivate your account.</p>
+          </div>
+        </div>
+        <button id="deactivateBtn" class="px-4 py-2 bg-red-600 text-white font-medium text-sm rounded-lg hover:bg-red-700 transition shadow-xs">
+          Deactivate
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="mx-6 mb-6 bg-pink-100/60 rounded-xl py-4 px-6 border border-pink-200/50 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-4">
+  <div class="flex items-center space-x-3">
+    <div class="p-2 bg-[#E91E63] text-white rounded-lg hidden sm:block shadow-xs">
+      <i data-lucide="shield" class="w-4 h-4"></i>
+    </div>
+    <p class="text-sm text-gray-700 font-medium">
+      <span class="text-[#E91E63] font-bold">Your safety is our priority.</span> Stay alert, stay aware, and stay safe!
+    </p>
+  </div>
+  <div class="text-[#E91E63]">
+    <i data-lucide="heart" class="w-6 h-6 fill-[#E91E63]"></i>
+  </div>
+</div>
+</section>
+<section id="about-view" class="view-section">
+    <!-- Wrapper container to prevent any styling leaks to or from the rest of your app -->
+<div id="nb-standalone-page-root">
+    
+    <!-- MAIN HERO / ABOUT SECTION -->
+    <div class="nb-hero-section">
+        <div class="nb-hero-container">
+            <div class="nb-hero-text">
+                <div class="nb-section-tag">
+                    <i class="fa-solid fa-graduation-cap"></i> ABOUT NIRBHAYA — <i class="fa-solid fa-heart"></i>
+                </div>
+                <h1 class="nb-hero-title">The Story Behind <span class="nb-accent-text">NIRBHAYA</span></h1>
+                <p class="nb-hero-paragraph">"Nirbhaya" is a name that represents courage, strength, and the spirit of fighting against injustice. It was inspired by a tragic incident that shook the entire nation of India on 16th December 2012. A young woman fought bravely for her life, but the incident highlighted the urgent need for women's safety, security, and respect in our society.</p>
+                <p class="nb-hero-paragraph nb-bold-paragraph">
+                    <span class="nb-accent-text">NIRBHAYA – Women Safety System</span> is our humble effort towards building a safer world where every woman can live freely, fearlessly, and with dignity.
+                </p>
+                
+                <!-- Side Highlighted Quote Box -->
+                <div class="nb-hero-quote-box">
+                    <p class="nb-quote-body"><i class="fa-solid fa-quote-left"></i> She was not just a name in the news, She became a voice of millions."</p>
+                    <span class="nb-quote-author">— NIRBHAYA</span>
+                </div>
+            </div>
+            
+            <div class="nb-hero-media">
+                <!-- Referencing file verbatim -->
+                <img src="./images/nirbhaya.jpeg" alt="Nirbhaya Banner Artwork" class="nb-hero-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- CURRENT FEATURES SECTION -->
+    <div class="nb-features-section">
+        <h2 class="nb-section-heading">Our Current Features</h2>
+        <div class="nb-features-grid">
+            <div class="nb-feature-card">
+                <div class="nb-icon-circle nb-icon-red"><i class="fa-solid fa-bell"></i></div>
+                <h4 class="nb-card-title">SOS Emergency Alert</h4>
+                <p class="nb-card-desc">Send instant SOS alerts with live location to trusted contacts and authorities.</p>
+            </div>
+            <div class="nb-feature-card">
+                <div class="nb-icon-circle nb-icon-purple"><i class="fa-solid fa-location-dot"></i></div>
+                <h4 class="nb-card-title">Live Location Tracking</h4>
+                <p class="nb-card-desc">Real-time location tracking for your safety and peace of mind.</p>
+            </div>
+            <div class="nb-feature-card">
+                <div class="nb-icon-circle nb-icon-blue"><i class="fa-solid fa-file-invoice"></i></div>
+                <h4 class="nb-card-title">Incident Reporting</h4>
+                <p class="nb-card-desc">Report incidents easily, anonymously and make your voice count.</p>
+            </div>
+            <div class="nb-feature-card">
+                <div class="nb-icon-circle nb-icon-green"><i class="fa-solid fa-shield-heart"></i></div>
+                <h4 class="nb-card-title">Safety Resources</h4>
+                <p class="nb-card-desc">Access useful safety tips, guides, helpline numbers and important resources.</p>
+            </div>
+            <div class="nb-feature-card">
+                <div class="nb-icon-circle nb-icon-orange"><i class="fa-solid fa-users"></i></div>
+                <h4 class="nb-card-title">Community Support</h4>
+                <p class="nb-card-desc">Join a supportive community that stands together for women's safety.</p>
+            </div>
+            <div class="nb-feature-card">
+                <div class="nb-icon-circle nb-icon-purple"><i class="fa-solid fa-comments"></i></div>
+                <h4 class="nb-card-title">In-App Chat Support</h4>
+                <p class="nb-card-desc">24/7 in-app chat support with counselors and volunteers.</p>
+            </div>
+            <div class="nb-feature-card">
+                <div class="nb-icon-circle nb-icon-red"><i class="fa-solid fa-phone"></i></div>
+                <h4 class="nb-card-title">One-Tap Calling</h4>
+                <p class="nb-card-desc">Quick access to emergency helplines and local authorities.</p>
+            </div>
+            <div class="nb-feature-card">
+                <div class="nb-icon-circle nb-icon-blue"><i class="fa-solid fa-bullhorn"></i></div>
+                <h4 class="nb-card-title">Safety Notifications</h4>
+                <p class="nb-card-desc">Get real-time safety alerts and notifications about nearby risks.</p>
+            </div>
+            <div class="nb-feature-card">
+                <div class="nb-icon-circle nb-icon-purple"><i class="fa-solid fa-lock"></i></div>
+                <h4 class="nb-card-title">Secure & Private</h4>
+                <p class="nb-card-desc">Your data is encrypted and kept private. Your safety comes first.</p>
+            </div>
+            <div class="nb-feature-card">
+                <div class="nb-icon-circle nb-icon-green"><i class="fa-solid fa-book-open"></i></div>
+                <h4 class="nb-card-title">Awareness & Education</h4>
+                <p class="nb-card-desc">Learn, stay aware, and empower yourself with knowledge.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FUTURE UPDATES BLOCK -->
+    <div class="nb-timeline-section">
+        <h2 class="nb-section-heading">Future Updates</h2>
+        <div class="nb-timeline-container">
+            <div class="nb-timeline-step">
+                <div class="nb-step-number">01</div>
+                <h5 class="nb-step-title">Direct Police Integration</h5>
+                <p class="nb-step-desc">Connect directly with nearby police stations for real emergency response.</p>
+            </div>
+            <div class="nb-timeline-step">
+                <div class="nb-step-number">02</div>
+                <h5 class="nb-step-title">Mobile Application</h5>
+                <p class="nb-step-desc">Available on Android & iOS with enhanced features.</p>
+            </div>
+            <div class="nb-timeline-step">
+                <div class="nb-step-number">03</div>
+                <h5 class="nb-step-title">AI-Powered Assistant</h5>
+                <p class="nb-step-desc">AI enabled software for faster access and smart risk detection.</p>
+            </div>
+            <div class="nb-timeline-step">
+                <div class="nb-step-number">04</div>
+                <h5 class="nb-step-title">Voice-Activated SOS</h5>
+                <p class="nb-step-desc">Trigger SOS alerts using voice commands silently.</p>
+            </div>
+            <div class="nb-timeline-step">
+                <div class="nb-step-number">05</div>
+                <h5 class="nb-step-title">Smart GPS Tracking</h5>
+                <p class="nb-step-desc">Real-time tracking with geofencing to alert trusted contacts.</p>
+            </div>
+            <div class="nb-timeline-step">
+                <div class="nb-step-number">06</div>
+                <h5 class="nb-step-title">Live Audio & Video</h5>
+                <p class="nb-step-desc">Record and share live audio & video during emergency situations.</p>
+            </div>
+            <div class="nb-timeline-step">
+                <div class="nb-step-number">07</div>
+                <h5 class="nb-step-title">Wearable Support</h5>
+                <p class="nb-step-desc">SOS alerts from smartwatches and wearable devices.</p>
+            </div>
+            <div class="nb-timeline-step">
+                <div class="nb-step-number">08</div>
+                <h5 class="nb-step-title">Multi-Agency Link</h5>
+                <p class="nb-step-desc">Connect with Police, Ambulance, Fire & Rescue and more services.</p>
+            </div>
+            <div class="nb-timeline-step">
+                <div class="nb-step-number">09</div>
+                <h5 class="nb-step-title">Multi-Language</h5>
+                <p class="nb-step-desc">Support for major Indian languages for wider reach.</p>
+            </div>
+            <div class="nb-timeline-step">
+                <div class="nb-step-number">10</div>
+                <h5 class="nb-step-title">Cloud Family Dash</h5>
+                <p class="nb-step-desc">Secure cloud backup and family dashboard for live updates.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- INSPIRATIONAL QUOTES BLOCK -->
+    <div class="nb-quotes-section">
+        <h2 class="nb-section-heading">Inspirational Quotes</h2>
+        <div class="nb-quotes-container">
+            <div class="nb-quote-card">
+                <p class="nb-quote-text">"A strong woman looks a challenge in the eye and gives it a wink."</p>
+                <span class="nb-quote-sign">— Gina Carey</span>
+            </div>
+            <div class="nb-quote-card">
+                <p class="nb-quote-text">"You are braver than you believe, stronger than you seem, and smarter than you think."</p>
+                <span class="nb-quote-sign">— A.A. Milne</span>
+            </div>
+            <div class="nb-quote-card">
+                <p class="nb-quote-text">"There is no limit to what we, as women, can accomplish."</p>
+                <span class="nb-quote-sign">— Michelle Obama</span>
+            </div>
+            <div class="nb-quote-card">
+                <p class="nb-quote-text">"Behind every successful woman is herself."</p>
+                <span class="nb-quote-sign">— Unknown</span>
+            </div>
+            <div class="nb-quote-card">
+                <p class="nb-quote-text">"She remembered who she was and the game changed."</p>
+                <span class="nb-quote-sign">— Lalah Delia</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATCHPHRASE RIBBON -->
+    <div class="nb-ribbon-banner">
+        🌸 Be Safe. Be Strong. Be You. 🌸
+    </div>
+     <div class="nb-custom-footer-box">
+
+    <!-- Wave -->
+    <div class="nb-footer-wave">
+        <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+            <path fill="#fffafb"
+                d="M0,80
+                C180,170 420,-20 720,70
+                C980,150 1180,20 1440,90
+                L1440,0
+                L0,0
+                Z">
+            </path>
+        </svg>
+    </div>
+
+    <div class="nb-footer-wrapper">
+
+        <!-- Brand -->
+        <div class="nb-footer-col-brand">
+
+            <img src="./images/banner3.jpeg"
+                 alt="Nirbhaya Logo"
+                 class="nb-footer-logo">
+
+            <p class="nb-footer-brand-info">
+                Together, let's build a safer world where every woman lives
+                with dignity, respect and freedom.
+            </p>
+
+            <div class="nb-footer-socials">
+
+                <a href="#" class="nb-social-link">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" class="nb-social-link">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+
+                <a href="#" class="nb-social-link">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="https://github.com/subiksha77"
+                   target="_blank"
+                   class="nb-social-link">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Quick Links -->
+        <div class="nb-footer-col-links">
+
+            <h4 class="nb-footer-title">Quick Links</h4>
+
+            <ul class="nb-footer-list">
+                <li>Home</li>
+                <li>Dashboard</li>
+                <li>Incidents</li>
+                <li>Safety Tips</li>
+                <li>Resources</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+
+        </div>
+
+        <!-- Helplines -->
+        <div class="nb-footer-col-links nb-helplines-accent">
+
+            <h4 class="nb-footer-title">Important Links</h4>
+
+            <ul class="nb-footer-list">
+                <li>Women Helpline : 181</li>
+                <li>Police Helpline : 100</li>
+                <li>Child Helpline : 1098</li>
+                <li>Health Helpline : 104</li>
+                <li>Disaster Helpline : 108</li>
+            </ul>
+
+        </div>
+
+        <!-- Stay Connected -->
+        <div class="nb-footer-col-action">
+
+            <h4 class="nb-footer-title">Stay Connected</h4>
+
+            <p class="nb-footer-action-text">
+                Join our community and stay updated with the latest safety
+                alerts, awareness campaigns and important resources.
+            </p>
+
+            <button class="nb-footer-cta-button">
+                <i class="fa-solid fa-shield-heart"></i>
+                Stay Safe, Stay Informed
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="nb-footer-credits">
+
+        <i class="fa-regular fa-heart"></i>
+
+        Designed by
+
+        <a href="https://github.com/subiksha77"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="nb-designer-name">
+            Subiksha S
+        </a>
+
+        <i class="fa-brands fa-github"></i>
+
+    </div>
+
+</div>
+    <!-- UNIQUE FOOTER -->
+</section>
+
+</div>
+</main>
+    </div>
+    <div id="toastNotification" class="toast-notification">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastMessage">System Alert Ready</span>
+    </div>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

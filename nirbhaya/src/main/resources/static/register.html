@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nirbhaya Registration Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <style>
+        :root {
+            --primary-pink: #E1005E;
+            --gradient-start: #911265;
+            --gradient-end: #E1005E;
+            --bg-light: #FFF5F8;
+            --text-dark: #1E232A;
+            --text-muted: #70757D;
+            --border-color: #F1E5E9;
+            --input-bg: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+
+        .phone-container {
+            width: 100%;
+            max-width: 450px;
+            background: #FFFFFF;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(225, 0, 94, 0.08);
+            overflow: hidden;
+            position: relative;
+            border: 8px solid #FFFFFF;
+        }
+
+        /* Top Layout Header */
+        .header-section {
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4EE 100%);
+            padding: 45px 20px 20px 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 200px;
+            gap: 10px;
+        }
+
+        .back-arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--primary-pink);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .illustration-image-frame {
+            width: 210px;
+            height: auto;
+            max-height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .illustration-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        .branding-text {
+            text-align: left;
+            flex: 1;
+            z-index: 5;
+        }
+
+        .branding-text h1 {
+            color: #8C145B;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 1.5px;
+            line-height: 1.1;
+        }
+
+        .branding-text p {
+            color: #8C145B;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .divider-heart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+            width: 100%;
+            position: relative;
+        }
+        
+        .divider-heart::before,
+        .divider-heart::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #E1A4C4;
+        }
+        
+        .divider-heart i {
+            color: var(--primary-pink);
+            font-size: 0.65rem;
+            margin: 0 8px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .tagline {
+            color: var(--primary-pink);
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .form-container {
+            background: #FFFFFF;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            padding: 25px 20px;
+            margin-top: -15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .form-title {
+            text-align: center;
+            color: var(--text-dark);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-bottom: 25px;
+        }
+
+        .section-label {
+            color: var(--primary-pink);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 14px;
+        }
+
+        .input-group i.input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-pink);
+            font-size: 1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            outline: none;
+            background-color: var(--input-bg);
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-pink);
+        }
+
+        .input-group input::placeholder {
+            color: #A0A5B0;
+        }
+
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .emergency-box {
+            background-color: #FFFDFE;
+            border: 1px solid #FFF0F5;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 6px rgba(225, 0, 94, 0.02);
+        }
+
+        .contact-avatar {
+            background-color: #FFE6EE;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .contact-avatar i {
+            color: var(--primary-pink);
+            font-size: 0.9rem;
+        }
+
+        .contact-fields-container {
+            flex-grow: 1;
+        }
+
+        .contact-title {
+            color: var(--primary-pink);
+            font-size: 0.72rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .contact-input-wrapper {
+            position: relative;
+        }
+
+        .contact-input-wrapper i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-pink);
+            font-size: 0.8rem;
+        }
+
+        .contact-fields-container input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            outline: none;
+        }
+        
+        .contact-fields-container .has-right-icon input {
+            padding-right: 28px;
+        }
+
+        .btn-register {
+            width: 100%;
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(225, 0, 94, 0.2);
+        }
+
+        .login-footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 18px;
+        }
+
+        .login-footer a {
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="phone-container">
+    <div class="header-section">
+        <div class="back-arrow" onclick="window.location.href='login.html'"><i class="fa-solid fa-arrow-left"></i></div>
+        
+        <div class="illustration-image-frame">
+            <img src="./images/login image.jpeg" alt="Nirbhaya Security Banner Graphic">
+        </div>
+        
+        <div class="branding-text">
+            <h1>NIRBHAYA</h1>
+            <p>Women Safety System</p>
+            <div class="divider-heart"><i class="fa-solid fa-heart"></i></div>
+            <div class="tagline">Stay Safe. Stay Strong.</div>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <h2 class="form-title">Create Your Account</h2>
+        <p class="form-subtitle">Please fill in the details below to register</p>
+
+        <form id="registerForm">
+            <div class="section-label">Personal Information</div>
+            
+            <div class="input-group">
+                <i class="fa-regular fa-user input-icon"></i>
+                <input type="text" id="name" placeholder="Full Name" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-envelope input-icon"></i>
+                <input type="email" id="email" placeholder="Email Address" required>
+            </div>
+             
+            <div class="input-group">
+    <i class="fa-solid fa-lock input-icon"></i>
+    <input type="password" id="password" placeholder="Create Password" required>
+</div>
+
+            <div class="row-2">
+                <div class="input-group">
+                    <i class="fa-regular fa-calendar-days input-icon"></i>
+                    <input type="text" id="dob" placeholder="Date of Birth" onfocus="(this.type='date')" onblur="(this.type='text')">
+                </div>
+                <div class="input-group">
+                    <i class="fa-regular fa-user input-icon"></i>
+                    <input type="number" id="age" placeholder="Age">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-location-dot input-icon"></i>
+                <input type="text" id="location" placeholder="Location / City">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-house input-icon"></i>
+                <input type="text" id="address" placeholder="Address">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-phone input-icon"></i>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+            </div>
+
+            <div class="section-label" style="margin-top: 20px;">Emergency Contacts (3)</div>
+            
+            <div class="emergency-box">
+                <div class="contact-avatar"><i class="fa-solid fa-user"></i></div>
+                <div class="contact-fields-container">
+                    <div class="contact-title">Emergency Contact 1</div>
+                    <div class="contact-row">
+                        <input type="text" id="contact1Name" placeholder="Contact Name" required>
+                        <div class="contact-input-wrapper has-right-icon">
+                            <input type="tel" id="contact1Phone" placeholder="Phone Number" required>
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="emergency-box">
+                <div class="contact-avatar"><i class="fa-solid fa-user"></i></div>
+                <div class="contact-fields-container">
+                    <div class="contact-title">Emergency Contact 2</div>
+                    <div class="contact-row">
+                        <input type="text" id="contact2Name" placeholder="Contact Name" required>
+                        <div class="contact-input-wrapper has-right-icon">
+                            <input type="tel" id="contact2Phone" placeholder="Phone Number" required>
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="emergency-box">
+                <div class="contact-avatar"><i class="fa-solid fa-user"></i></div>
+                <div class="contact-fields-container">
+                    <div class="contact-title">Emergency Contact 3</div>
+                    <div class="contact-row">
+                        <input type="text" id="contact3Name" placeholder="Contact Name" required>
+                        <div class="contact-input-wrapper has-right-icon">
+                            <input type="tel" id="contact3Phone" placeholder="Phone Number" required>
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-register">
+                <i class="fa-solid fa-shield-halved"></i> Register
+            </button>
+        </form>
+
+        <div class="login-footer">
+            Already have an account? <a href="login.html">Login</a>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById("registerForm");
+
+    if (!form) {
+        console.error("Register form not found!");
+        return;
+    }
+
+    form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        // 🔹 Get form values
+        const userProfile = {
+            fullName: document.getElementById("name").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            password: document.getElementById("password").value.trim(),
+            phone: document.getElementById("phone").value.trim(),
+            dob: document.getElementById("dob").value,
+            age: document.getElementById("age").value,
+            location: document.getElementById("location").value.trim(),
+            address: document.getElementById("address").value.trim(),
+
+            contact1Name: document.getElementById("contact1Name").value.trim(),
+            contact1Phone: document.getElementById("contact1Phone").value.trim(),
+
+            contact2Name: document.getElementById("contact2Name").value.trim(),
+            contact2Phone: document.getElementById("contact2Phone").value.trim(),
+
+            contact3Name: document.getElementById("contact3Name").value.trim(),
+            contact3Phone: document.getElementById("contact3Phone").value.trim()
+        };
+
+        try {
+            const response = await fetch("http://localhost:8081/api/users/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userProfile)
+            });
+
+            const data = await response.json().catch(() => null);
+
+            if (!response.ok) {
+                alert(data?.message || "Registration failed");
+                return;
+            }
+
+            // ✅ Save in localStorage
+            localStorage.setItem("registeredUser", userProfile.fullName);
+            localStorage.setItem("registeredUserEmail", userProfile.email);
+
+            alert("Registration Successful ✔");
+            window.location.href = "login.html";
+
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Unable to connect to server");
+        }
+    });
+
+});
+</script>
+</body>
+</html>

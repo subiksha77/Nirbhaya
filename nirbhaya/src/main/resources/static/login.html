@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nirbhaya - Women Safety System Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-[#FEEFF4] min-h-screen flex items-center justify-center p-4 antialiased">
+
+    <div class="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(253,164,186,0.3)] w-full max-w-[500px] p-8 md:p-10 border border-pink-100/50 relative">
+        
+        <div class="flex flex-col items-center text-center">
+            <div class="w-full rounded-2xl overflow-hidden mb-4 shadow-sm">
+                <img 
+                    src="./images/login image.jpeg" 
+                    alt="Nirbhaya Women Safety Logo and Shield" 
+                    class="w-full h-auto object-cover"
+                >
+            </div>
+            
+            <h1 class="text-[#850E55] text-4xl font-extrabold tracking-[0.15em] mt-2 select-none uppercase">
+                NIRBHAYA
+            </h1>
+            
+            <div class="flex items-center w-full my-3">
+                <div class="h-[1px] bg-gradient-to-r from-transparent via-[#E11D48]/40 to-[#E11D48]/40 flex-1"></div>
+                <span class="text-[#3A1D4E] font-semibold text-base tracking-wide px-3 whitespace-nowrap">
+                    Women Safety System
+                </span>
+                <div class="h-[1px] bg-gradient-to-l from-transparent via-[#E11D48]/40 to-[#E11D48]/40 flex-1"></div>
+            </div>
+            
+            <p class="text-[#FF0066] font-bold text-sm tracking-wide mb-6">
+                Stay Safe. Stay Strong.
+            </p>
+        </div>
+
+        <div class="bg-[#F8F9FD]/90 rounded-3xl p-6 border border-slate-100">
+            <div class="text-center mb-5">
+                <h2 class="text-[#0F172A] text-xl font-bold tracking-tight">Welcome Back!</h2>
+                <p class="text-slate-400 text-xs mt-1">Login to continue to your account</p>
+            </div>
+
+            <form id="nirbhayaLoginForm" class="space-y-4" onsubmit="executeLogin(event)">
+                
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#7C3AED]">
+                        <i class="fa-regular fa-user text-base"></i>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="loginName"
+                        name="name"
+                        required
+                        placeholder="Username / Full Name" 
+                        class="w-full pl-11 pr-4 py-3.5 bg-white border border-slate-200 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D91B5C]/20 focus:border-[#D91B5C] transition-all text-sm font-medium"
+                    >
+                </div>
+
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#7C3AED]">
+                        <i class="fa-regular fa-envelope text-base"></i>
+                    </div>
+                    <input 
+                        type="email" 
+                        id="loginEmail"
+                        name="email"
+                        required
+                        placeholder="Email Address" 
+                        class="w-full pl-11 pr-4 py-3.5 bg-white border border-slate-200 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D91B5C]/20 focus:border-[#D91B5C] transition-all text-sm font-medium"
+                    >
+                </div>
+
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#7C3AED]">
+                        <i class="fa-solid fa-lock text-base"></i>
+                    </div>
+                    <input 
+                        type="password" 
+                        id="loginPassword"
+                        name="password"
+                        required
+                        placeholder="Password" 
+                        class="w-full pl-11 pr-11 py-3.5 bg-white border border-slate-200 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D91B5C]/20 focus:border-[#D91B5C] transition-all text-sm font-medium"
+                    >
+                    <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600">
+                        <i id="toggleVisibilityIcon" class="fa-regular fa-eye text-base"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center justify-between text-xs font-semibold pt-1">
+                    <label class="flex items-center gap-2 text-slate-600 cursor-pointer">
+                        <input type="checkbox" class="rounded border-slate-300 text-[#D91B5C] focus:ring-[#D91B5C]/30 w-4 h-4">
+                        Remember Me
+                    </label>
+                    <a href="#" class="text-[#FF0066] hover:underline transition-all">Forgot Password?</a>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button 
+                        type="reset" 
+                        class="w-full sm:w-1/3 py-3.5 border border-dashed border-slate-200 text-slate-400 font-medium rounded-xl hover:text-slate-600 hover:bg-slate-50 transition-all text-xs flex items-center justify-center gap-2"
+                    >
+                        <i class="fa-solid fa-arrow-rotate-left text-xs"></i> Reset
+                    </button>
+                    
+                    <button 
+                        type="submit" 
+                        class="w-full sm:w-2/3 py-3.5 bg-gradient-to-r from-[#BC0F67] to-[#EC1C24] text-white font-bold rounded-xl active:scale-[0.99] shadow-lg shadow-pink-500/20 transition-all text-sm tracking-wide flex items-center justify-center gap-2"
+                    >
+                        <i class="fa-solid fa-right-to-bracket text-xs"></i> Login
+                    </button>
+                </div>
+            </form>
+
+            <div class="flex items-center my-4">
+                <div class="h-[1px] bg-slate-200 flex-1"></div>
+                <span class="text-slate-400 text-[10px] font-bold px-3 tracking-widest">OR</span>
+                <div class="h-[1px] bg-slate-200 flex-1"></div>
+            </div>
+
+            <button class="w-full py-3 bg-white border border-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-all text-xs flex items-center justify-center gap-2.5 shadow-sm">
+                <svg class="w-4 h-4" viewBox="0 0 24 24">
+                    <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.866-3.577-7.866-8s3.536-8 7.866-8c2.46 0 4.105 1.025 5.047 1.926l3.227-3.11C18.281 1.07 15.45 0 12.24 0 5.58 0 0 5.37 0 12s5.58 12 12.24 12c6.96 0 11.57-4.834 11.57-11.774 0-.795-.085-1.4-.185-1.941H12.24z"/>
+                </svg>
+                Continue with Google
+            </button>
+
+            <p class="text-center text-xs text-slate-500 mt-5">
+    Don't have an account?
+    <a href="register.html" class="text-[#FF0066] font-bold hover:underline ml-1">
+        Sign Up
+    </a>
+</p>
+        </div>
+    </div>
+
+    <script>
+function executeLogin(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("loginName").value.trim();
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+
+    console.log("EMAIL:", email);
+console.log("PASSWORD:", password);
+
+    fetch("http://localhost:8081/api/users/login", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        email: email,
+        password: password
+    })
+})
+    .then(async (response) => {
+
+        if (response.ok) {
+
+            const user = await response.json();
+
+            localStorage.setItem("currentUser", user.email);
+            localStorage.setItem("registeredUser", user.fullName);
+
+            alert("Login Successful!");
+
+            window.location.href = "dashboard.html";
+
+        } else {
+
+            const message = await response.text();
+            alert(message);
+
+        }
+
+    })
+    .catch((error) => {
+        console.error(error);
+        alert("Unable to connect to the server. Please try again.");
+    });
+}
+
+// Toggle Password
+function togglePasswordVisibility() {
+
+    const field = document.getElementById("loginPassword");
+    const icon = document.getElementById("toggleVisibilityIcon");
+
+    if (field.type === "password") {
+        field.type = "text";
+        icon.classList.replace("fa-eye", "fa-eye-slash");
+    } else {
+        field.type = "password";
+        icon.classList.replace("fa-eye-slash", "fa-eye");
+    }
+}
+</script>
+    
+</body>
+</html>
